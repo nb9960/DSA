@@ -1,2 +1,2 @@
 # DS
-This directory comprises of all important data structures and algorithms, I have studied so far using book Introduction to algorithms by Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest and Clifford Stein.
+This directory comprises of all important pseudocodes witten in C++ and solutions of chapterwise exercises. Happy Learning :)
