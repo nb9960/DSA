@@ -12,7 +12,9 @@ using namespace std;
 void countSort(ll a[], ll k,ll n, ll min){
   ll cnt[k];
   ll output[n];
-  memset(cnt,sizeof(cnt),0);
+  fi(i,0,k){
+    cnt[i]=0;
+  }
   fi(i,0,n){
     cnt[a[i]-min]++;
   }
@@ -24,7 +26,7 @@ void countSort(ll a[], ll k,ll n, ll min){
     cnt[a[i]-min]--;
   }
   fi(i,0,n){
-    a[i]=output[i];
+    cout<<output[i]<<" ";
   }
 }
 
@@ -44,8 +46,5 @@ int main() {
   }
   ll k=max-min+1;
   countSort(a,k,n,min);
-  fi(i,0,n){
-    cout<<a[i]<<" ";
-  }
 	return 0; 
 } 
