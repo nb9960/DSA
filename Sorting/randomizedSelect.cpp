@@ -48,11 +48,11 @@ ll randomizedSelect(ll a[],ll p, ll r, ll i){
 int main() { 
   ll n,el;
   cin>>n>>el;
-  ll a[n];
+  ll a[n+1];
   fi(i,0,n){
     cin>>a[i];
   }
-  ll elSmallest=randomizedSelect(a,1,n,el);
+  ll elSmallest=randomizedSelect(a,0,n-1,el);
   cout<<elSmallest<<endl;
 	return 0; 
 } 
