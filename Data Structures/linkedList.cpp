@@ -59,6 +59,77 @@ void sortedInsert(struct Node *p,ll x){
   }
 }
 
+int count(struct Node *p){
+  int l=0;
+  while(p){
+    l++;
+    p=p->next;
+  }
+  return l;
+}
+
+int sum(struct Node *p){
+  int sum=0;
+  while(p){
+    sum+=p->data;
+    p=p->next;
+  }
+  return sum;
+}
+
+int Max(struct Node *p){
+  int max=INT_MIN;
+  while(p){
+    if(p->data>max){
+      max=p->data;
+    }
+    p=p->next;
+  }
+  return max;
+}
+
+struct Node *Search(struct Node *p,int key){
+  struct Node *q;
+  while(p){
+    if(key==p->data){
+      q->next=p->next;
+      p->next=first;
+      first=p;
+      return p;
+    }
+    q=p;
+    p=p->next;
+  }
+  return NULL;
+}
+
+void insert(struct Node *p, int index, int x){
+  struct Node *t;
+  int i;
+  if(index<0 || index>count(p)){
+    return;
+  }
+  t=new Node;
+  t->data=x;
+  if(index==0){
+    t->next=first;
+    first=t;
+  }else{
+    for(i=0;i<index;i++){
+      p=p->next;
+    }
+    t->next=p->next;
+    p->next=t;
+  }
+}
+
+void Display(struct Node *p){
+  while(p!=NULL){
+    cout<<p->data<<" ";
+    p=p->next;
+  }
+}
+
 int main() 
 {  
   ll n;
@@ -67,7 +138,7 @@ int main()
   fi(i,0,n)
   cin>>a[i];
   create(a,n);
-  sortedInsert(first,15);
-  Display(first);
+  // sortedInsert(first,15);
+  // Display(first);
   return 0; 
 } 
