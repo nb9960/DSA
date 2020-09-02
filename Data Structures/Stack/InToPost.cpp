@@ -68,6 +68,34 @@ void infixToPostfix(string s){
   }
 }
 
+int Eval(string s){
+  stack<int>st;
+  int result,i;
+  for(i=0;i<s.size();i++){
+    if(!(s[i]=='*' || s[i]=='/' || s[i]=='+' || s[i]=='-')){
+      st.push(s[i]-'0');
+    }else{
+      int x2=st.top();
+      st.pop();
+      int x1=st.top();
+      st.pop();
+      switch(s[i])
+      {
+        case '+':result=x1+x2;
+         break;
+        case '-':result=x1-x2;
+         break;
+        case '*':result=x1*x2;
+         break;
+        case '/':result=x1/x2;
+         break;
+      }
+      st.push(result);        
+    }    
+  }
+  return st.top();
+}
+
 // Drive Code 
 int main() 
 {  
@@ -86,8 +114,9 @@ int main()
 
   while (t--) { 
     string s;
+    cout<<"Enter postfix string for evaluation"<<"\n";
     cin>>s;
-    infixToPostfix(s);
+    // infixToPostfix(s);
   } 
 
   return 0; 
