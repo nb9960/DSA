@@ -24,6 +24,24 @@ int maxDepth(node* node){
   }
 }
 
+int getWidth(node* root,int level){
+  if(root==NULL)
+    return 0;
+  if(level==1)
+    return 1;
+  return (getWidth(root->left,level-1)+getWidth(root->right,level-1));
+}
+
+int getMaxWidth(node* root){
+  int maxWidth=0,i,width,h=maxDepth(root);
+  for(i=1;i<=h;i++){
+    width=getWidth(root,i);
+    maxWidth=max(maxWidth,width);
+  }
+  return maxWidth;
+}
+
+
 int diameter(node* node){
   if(node==NULL){
     return 0;
@@ -49,10 +67,13 @@ int main(){
   root->right=newNode(3);
   root->left->left=newNode(4);
   root->left->right=newNode(5);
+  root->right->left=newNode(6);
+  root->right->right=newNode(7);
 
   cout<<"Size = "<<size(root)<<endl;
   cout<<"Height = "<<maxDepth(root)<<endl;
   cout<<"Diameter = "<<diameter(root)<<endl;
+  cout<<"Max Width = "<<getMaxWidth(root)<<endl;
   return 0;
 }
 
