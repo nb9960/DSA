@@ -41,6 +41,37 @@ int getMaxWidth(node* root){
   return maxWidth;
 }
 
+int sum(node* node){
+  if(node == NULL) return 0;
+  return sum(node->left)+node->data+sum(node->right);
+}
+
+// 
+// int isSumTree(node* node){
+//   int ls, rs;
+//   if(node == NULL || (node->left == NULL && node->right == NULL)){
+//     return 1;
+//   }
+//   ls = sum(node->left); rs = sum(node->right);
+//   if((node->data == ls +rs) && isSumTree(node->left) && isSumTree(node->right))
+//     return 1;
+//   return 0;
+// }
+
+bool isLeaf(node* root){
+  return (root->left == NULL && root->right == NULL);
+}
+
+bool isSumTree(node* node){
+  int ls = 0, rs = 0;
+  if(node == nullptr || isLeaf(node))
+    return true;
+  if(node->left)
+    ls = isLeaf(node->left) ? node->left->data : 2*node->left->data;
+  if(node->right)
+    rs = isLeaf(node->right) ? node->right->data : 2*node->right->data;
+  return (node->data == ls+rs && isSumTree(node->left) && isSumTree(node->right)); 
+}
 
 int diameter(node* node){
   if(node==NULL){
