@@ -4,7 +4,7 @@ using namespace std;
 #define fi(i,a,n) for (int i=a; i < n; i++) 
 
 int main() 
-{  
+{ 
   string s1,s2;
   cin>>s1>>s2;
   int cnt=0;
