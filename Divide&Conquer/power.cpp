@@ -1,7 +1,6 @@
 // nb_9960
 #include <bits/stdc++.h> 
 using namespace std; 
-#define fi(i,a,n) for (int i=a; i < n; i++) 
 
 float power(float x,int y){
   float tmp;
