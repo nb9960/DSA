@@ -22,7 +22,7 @@ bool validBrackets(string s){
   stack<char>st;
   fi(i,0,s.size())
   {
-    if(s[i]=='(')
+    if(s[i]=='(' || s[i] =='{' || s[i]=='[')
     {
       st.push(s[i]);
     }
@@ -34,13 +34,18 @@ bool validBrackets(string s){
         break;
       }
       char top=st.top();
-      if(top=='(')
-      {
-        st.pop();
+      st.pop();
+      if(s[i] ==')'){
+        if(top == '{' || top == '[') return false;
+        break;
       }
-      else
-      {
-        return false;
+      if(s[i] =='}'){
+        if(top == '(' || top == '[') return false;
+        break;
+      }
+      if(s[i] ==']'){
+        if(top == '(' || top == '{') return false;
+        break;
       }
     }
   }
@@ -50,11 +55,6 @@ bool validBrackets(string s){
 // Drive Code 
 int main() 
 {  
-  // #ifndef ONLINE_JUDGE 
-  // freopen("input.txt", "r", stdin); 
-  // freopen("output.txt", "w", stdout); 
-  // #endif
-  // Fast Input/Output 
   ios_base::sync_with_stdio(0); 
   cin.tie(0); 
   cout.tie(0); 
