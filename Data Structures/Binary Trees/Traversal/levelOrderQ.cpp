@@ -16,6 +16,9 @@ node* newNode(int data){
   return Node;
 }
 
+/*
+For reverse level order instead of printing push node to stack and remember right subtree is visited before left
+*/
 void printLevelOrder(node *root){
   if(root==NULL)
     return;

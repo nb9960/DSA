@@ -13,11 +13,13 @@ void printGivenLevel(node* root, int level){
     return;
   if(level==1)
     cout<<root->data<<" ";
-  else if(level>1){
+  else{
     printGivenLevel(root->left,level-1);
     printGivenLevel(root->right,level-1);
   }
 }
+
+
 
 int height(node* node){
   if(node==NULL)
@@ -38,6 +40,11 @@ node* newNode(int data){
   Node->right=NULL;
   return Node;
 }
+
+/*
+For reverse level order just reverse the loop from 1-h to h-1
+For spiral level order add a variable lr if true the first left recurrence then right else first right then left
+*/
 
 void printLevelOrder(node *root){
   int h=height(root);
