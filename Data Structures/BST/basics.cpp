@@ -16,6 +16,25 @@ node* newNode(int key)
     return Node;
 }
 
+bool isLeaf(node* root){
+  return (root->left == NULL && root->right == NULL);
+}
+
+bool isSumTree(node* root){
+  int ls = 0, rs= 0;
+  if(!root || isLeaf(root)) return true;
+  if(isSumTree(root->left) && isSumTree(root->right)){
+    if(!root->left) ls =0;
+    else if(isLeaf(root->left)) ls = root->left->key_value;
+    else ls = 2*(root->left->key_value);
+    if(!root->right) rs = 0;
+    else if(isLeaf(root->right)) rs = root->right->key_value;
+    else rs = 2*(root->right->key_value);
+    return (root->key_value == ls+rs);
+  }
+  return false;
+}
+
 node* search(node* root,int key){
   node* t= root;
   while (t != NULL)
@@ -55,14 +74,16 @@ void inorder(node* root){
 
 int main(){
   node* root = NULL;
-  insert(root,10);
-  insert(root, 5);
-  insert(root,20);
-  insert(root,8);
-  insert(root, 30);
+  insert(root,26);
+  insert(root, 10);
+  insert(root,3);
+  insert(root,4);
+  insert(root, 6);
+  insert(root, 3);
 
   inorder(root);
-
+  if(isSumTree(root))  cout<<"Is sum Tree"<<endl;
+  else cout<<"not a sum tree"<<endl;
   node* tmp = search (root, 20);
   return 0;
 }
