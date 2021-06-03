@@ -77,28 +77,6 @@ void Graph::BFS(int s){
   }
 }
 
-void Graph::DFSUtil(int ind, bool visited[]){
-  visited[ind] = true;
-  cout<<ind<<" ";
-  list<int>:: iterator i;
-  // Recur all vertices adjacent to this vertex
-  for(i = adj[ind].begin(); i != adj[ind].end(); i++)
-    if(!visited[*i])
-      DFSUtil(*i, visited);
-}
-
-void Graph::DFS(){
-  bool *visited = new bool[v]; // visited or not
-  for(int i=0;i<v;i++)
-    visited[i] = false;
-
-    // TODO : FIX THIS
-  // int i;
-  // for(i=0;i<v;i++)
-    if(visited[0] == false);
-      DFSUtil(0, visited);
-}
-
 bool Graph::isCyclicUtil(int v, bool visited[], bool *recStack){
   if(!visited[v]){
     visited[v] = true;
