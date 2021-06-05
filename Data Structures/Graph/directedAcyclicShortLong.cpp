@@ -4,6 +4,7 @@ distances of its adjacent using distance of current vertex.*/
 #include <bits/stdc++.h>
 using namespace std;
 #define INF INT_MAX
+#define NINF INT_MIN
 
 class AdjListNode{
   int v;
@@ -22,6 +23,7 @@ public:
   Graph(int V);
   void addEdge(int u, int v, int weight);
   void shortestPath(int s);
+  void longestPath(int s);
 };
 
 Graph::Graph(int V){
@@ -43,7 +45,6 @@ void Graph::topoSortUtil(int v, bool visited[], stack<int> &s){
     if (!visited[node.getV()])
       topoSortUtil(node.getV(), visited, s);
   }
-
   s.push(v);
 }
 
@@ -71,6 +72,32 @@ void Graph::shortestPath(int s){
     (dist[i] == INF) ? cout<<"INF " : cout<<dist[i]<<" ";
 }
 
+void Graph::longestPath(int s){
+  stack<int> S;
+  int dist[V];
+  bool *visited = new bool[V];
+  for(int i=0;i<V;i++)
+    visited[i] = false;
+  for(int i=0;i<V;i++)
+    if(!visited[i])
+      topoSortUtil(i, visited, S);
+  for(int i=0;i<V;i++)
+    dist[i] = NINF;
+  dist[s] = 0;
+  while(!S.empty()){
+    int u=S.top();
+    S.pop();
+    list<AdjListNode>::iterator i;
+    if(dist[u] != NINF){
+      for(i=adj[u].begin(); i!=adj[u].end();i++)
+        if(dist[i->getV()] < dist[u] + i->getWeight())
+          dist[i->getV()] = dist[u] + i->getWeight();
+    }
+  }
+  for(int i=0;i<V;i++)
+    (dist[i] == NINF) ? cout<<"INF " : cout<<dist[i]<<" ";
+}
+
 int main(){
   Graph g(6);
   g.addEdge(0, 1, 5);
@@ -84,7 +111,10 @@ int main(){
   g.addEdge(4, 5, -2);
 
   int s = 1;
-  cout << "Following are shortest distances from source " << s <<" n";
-  g.shortestPath(s);
+  // cout << "Following are shortest distances from source " << s <<": \n";
+  // g.shortestPath(s);
+
+  cout << "Following are longest distances from source " << s <<": \n";
+  g.longestPath(s);
   return 0;
 }
